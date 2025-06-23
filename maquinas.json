@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1e7d1a80-79a4-4b35-9a88-5e6f83982fc2",
+        "nombre": "Servidor de Producción 1",
+        "ubicacion": "DataCenter Norte",
+        "tipo": "FISICO"
+    },
+    {
+        "id": "2d93e0b5-84ef-4f13-91fb-2a7a03e24e04",
+        "nombre": "Servidor Virtualizado",
+        "ubicacion": "Cluster Kubernetes",
+        "tipo": "VIRTUAL"
+    },
+    {
+        "id": "3ad32b62-0c3c-4c45-a0e6-7c52a4f81c4e",
+        "nombre": "Nodo Docker 01",
+        "ubicacion": "Cluster Docker Swarm",
+        "tipo": "CONTENEDOR"
+    },
+    {
+        "id": "4e8f20a7-1c6b-4a58-91a6-9b39c28782a1",
+        "nombre": "Servidor de Desarrollo 1",
+        "ubicacion": "DataCenter Sur",
+        "tipo": "FISICO"
+    },
+    {
+        "id": "5b9d3c16-d9d7-48a1-859b-d8b0c03b56a7",
+        "nombre": "Servidor Backup",
+        "ubicacion": "DataCenter Central",
+        "tipo": "FISICO"
+    },
+    {
+        "id": "6a5c4b90-4d3f-4426-909e-eccb546f5f1f",
+        "nombre": "Máquina Virtual Ubuntu",
+        "ubicacion": "Cluster VMware",
+        "tipo": "VIRTUAL"
+    },
+    {
+        "id": "7c22f680-3284-4a0d-b94e-3d0e2dd9a6f2",
+        "nombre": "Contenedor API Gateway",
+        "ubicacion": "Cluster Docker Swarm",
+        "tipo": "CONTENEDOR"
+    },
+    {
+        "id": "8e0dcf91-f7ef-4aa4-a9d8-d2a7b5e21bd4",
+        "nombre": "Servidor de Pruebas",
+        "ubicacion": "DataCenter Norte",
+        "tipo": "FISICO"
+    },
+    {
+        "id": "90d33f22-e5ba-4e3f-91a0-8cbe3106fa52",
+        "nombre": "VM Windows Server",
+        "ubicacion": "Hyper-V Host 3",
+        "tipo": "VIRTUAL"
+    },
+    {
+        "id": "a1e5dbbc-8e6b-47b6-b25c-b5d4d4720d3f",
+        "nombre": "Contenedor PostgreSQL",
+        "ubicacion": "Cluster Kubernetes",
+        "tipo": "CONTENEDOR"
+    },
+    {
+        "id": "b2f4a9c1-6d6d-4e5b-8a99-2bbd9f64cf9e",
+        "nombre": "Servidor de Monitoreo",
+        "ubicacion": "DataCenter Oeste",
+        "tipo": "FISICO"
+    }
+]
