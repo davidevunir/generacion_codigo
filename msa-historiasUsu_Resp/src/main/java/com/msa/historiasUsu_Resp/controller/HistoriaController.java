@@ -1,88 +1,103 @@
 package com.msa.historiasUsu_Resp.controller;
 
+import static lombok.AccessLevel.PRIVATE;
+import static org.springframework.http.HttpStatus.*;
+
 import com.msa.historiasUsu_Resp.dto.GenericResponse;
 import com.msa.historiasUsu_Resp.repository.model.Historia;
-import com.msa.historiasUsu_Resp.service.HistoriaService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-
-
+import com.msa.historiasUsu_Resp.service.IDHistoriaService;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
-@RequestMapping("/api/historias")
+@RequestMapping("/historias")
 @RequiredArgsConstructor
-@Tag(name = "Historia de Usuario", description = "API para gestionar historias de usuario")
-
+@FieldDefaults(level = PRIVATE, makeFinal = true)
 public class HistoriaController {
 
-    @Autowired
-    private HistoriaService historiaService;
+    IDHistoriaService service;
 
-    @Operation(summary = "Obtener todas las historias de usuario")
-    @ApiResponse(responseCode = "200", description = "Lista de historias encontrada")
     @GetMapping
-    public ResponseEntity<GenericResponse<Object>> listarTodos() {
-        return ResponseEntity.ok(historiaService.listarTodos());
+    public ResponseEntity<GenericResponse<Object>> getAll() {
+        return ResponseEntity.ok(service.getAll());
     }
-
-    @Operation(summary = "Obtener una historia de usuario por ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Historia encontrada"),
-            @ApiResponse(responseCode = "404", description = "Historia no encontrada")
-    })
 
     @GetMapping("/{id}")
-    public ResponseEntity<GenericResponse<Object>> obtenerPorId(
-            @Parameter(description = "ID de la historia de usuario a obtener")
-            @PathVariable UUID id) {
-        return ResponseEntity.ok(historiaService.obtenerPorId(id));
+    public ResponseEntity<GenericResponse<Object>> getById(@PathVariable UUID id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
-    @Operation(summary = "Crear una nueva historia de usuario")
-    @ApiResponse(responseCode = "200", description = "Historia creada exitosamente")
+    @GetMapping("/proyectos/{proyectoId}")
+    public ResponseEntity<GenericResponse<Object>> getByProyectoId(@PathVariable UUID proyectoId) {
+        return ResponseEntity.ok(service.getByProyectoId(proyectoId));
+    }
+
+    @GetMapping("/responsables/{responsableId}")
+    public ResponseEntity<GenericResponse<Object>> getByResponsableId(@PathVariable UUID responsableId) {
+        return ResponseEntity.ok(service.getByResponsableId(responsableId));
+    }
+
     @PostMapping
-    public ResponseEntity<GenericResponse<Object>> crear(
-            @Parameter(description = "Historia de usuario a crear")
-            @RequestBody Historia historia) {
-        return ResponseEntity.ok(historiaService.crear(historia));
-    }
+    public ResponseEntity<GenericResponse<Object>> createHistoria(@RequestBody Historia historia) {
+        GenericResponse<Object> response = service.createHistoria(historia);
 
-    @Operation(summary = "Actualizar una historia de usuario existente")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Historia actualizada exitosamente"),
-            @ApiResponse(responseCode = "404", description = "Historia no encontrada")
-    })
-    @PutMapping("/{id}")
-    public ResponseEntity<GenericResponse<Object>> actualizar(
-            @Parameter(description = "ID de la historia de usuario a actualizar")
-            @PathVariable UUID id,
-            @Parameter(description = "Historia de usuario con los nuevos datos")
-            @RequestBody Historia historia) {
-        if (historia.getId() == null) {
-            historia.setId(id);
+        if (response == null) {
+            response = GenericResponse.builder()
+                    .message("Error: No se pudo crear la historia.")
+                    .build();
+            return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(response);
         }
-        return ResponseEntity.ok(historiaService.actualizar(id, historia));
+
+        if ("La historia ya existe".equals(response.getMessage())) {
+            return ResponseEntity.status(IM_USED).body(response);
+        }
+
+        return ResponseEntity.status(CREATED).body(response);
     }
 
-    @Operation(summary = "Eliminar una historia de usuario")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Historia eliminada exitosamente"),
-            @ApiResponse(responseCode = "404", description = "Historia no encontrada")
-    })
+    @PutMapping("/{id}")
+    public ResponseEntity<GenericResponse<Object>> updateHistoria(@PathVariable UUID id, @RequestBody Historia historiaDetails) {
+        GenericResponse<Object> response = service.updateHistoria(id, historiaDetails);
+
+        if (response == null) {
+            response = GenericResponse.builder()
+                    .message("Error: No se pudo actualizar la historia.")
+                    .build();
+            return new ResponseEntity<>(response, INTERNAL_SERVER_ERROR);
+        }
+
+        if ("Historia no encontrada".equals(response.getMessage())) {
+            return new ResponseEntity<>(response, NOT_FOUND);
+        }
+        return new ResponseEntity<>(response, OK);
+    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<GenericResponse<Object>> eliminar(
-            @Parameter(description = "ID de la historia de usuario a eliminar")
-            @PathVariable UUID id) {
-        return ResponseEntity.ok(historiaService.eliminar(id));
+    public ResponseEntity<GenericResponse<Object>> deleteHistoria(@PathVariable UUID id) {
+        GenericResponse<Object> response = service.deleteHistoria(id);
+        if (response == null) {
+            response = GenericResponse.builder()
+                    .message("Error: No se pudo eliminar la historia.")
+                    .build();
+            return new ResponseEntity<>(response, INTERNAL_SERVER_ERROR);
+        }
+
+        if (response.getMessage().contains("no encontrada")) {
+            return new ResponseEntity<>(response, NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(response, NO_CONTENT);
     }
+
 }
