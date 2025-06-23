@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Archivos específicos de Maven
 **/target/
 !**/.mvn/wrapper/maven-wrapper.jar
@@ -40,3 +41,38 @@
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+=======
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+>>>>>>> 5487af4512d88fd66e65ff5a3e90188ede6f7ddf

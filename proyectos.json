@@ -1,0 +1,79 @@
+[
+    {
+        "id": "4c2b2e6f-fdaf-442b-848b-c57f9a27a289",
+        "nombre": "Sistema de Gestión de Ventas",
+        "descripcion": "Aplicación distribuida para gestionar ventas de productos.",
+        "fechainicio": "2024-11-01",
+        "activo": true
+    },
+    {
+        "id": "5d42f003-c709-409e-bd17-0cf93b53dc4b",
+        "nombre": "Portal Web Corporativo",
+        "descripcion": "Sitio web institucional para presentación de servicios.",
+        "fechainicio": "2025-01-15",
+        "activo": true
+    },
+    {
+        "id": "6f158d34-3bc5-4a90-b8a9-0c7f227e0b17",
+        "nombre": "Sistema de Monitoreo de Servidores",
+        "descripcion": "Aplicación para el monitoreo de infraestructuras TI.",
+        "fechainicio": "2025-04-01",
+        "activo": false
+    },
+    {
+        "id": "7a61e0d4-9b72-4a7b-870f-8f25d34d3020",
+        "nombre": "Aplicación de Gestión de Inventario",
+        "descripcion": "Sistema para controlar el inventario de productos en almacén.",
+        "fechainicio": "2024-09-20",
+        "activo": true
+    },
+    {
+        "id": "82c3b0f9-dfc5-4d60-90be-0c21f3f8d0d3",
+        "nombre": "Plataforma de E-learning",
+        "descripcion": "Portal web para impartir cursos en línea y seguimiento de estudiantes.",
+        "fechainicio": "2025-02-10",
+        "activo": true
+    },
+    {
+        "id": "9dff3cd7-f934-4c10-9c83-7b8e3b1dbe77",
+        "nombre": "Sistema de Ticketing",
+        "descripcion": "Herramienta para registrar, asignar y dar seguimiento a incidentes técnicos.",
+        "fechainicio": "2024-12-05",
+        "activo": false
+    },
+    {
+        "id": "a4c0db4f-df42-4643-981e-7ec2ad2e54ab",
+        "nombre": "App Móvil para Clientes",
+        "descripcion": "Aplicación móvil para que los clientes consulten su historial de compras.",
+        "fechainicio": "2025-03-01",
+        "activo": true
+    },
+    {
+        "id": "be7d8c6f-3f1b-4e4b-b3ab-3dc2e135b289",
+        "nombre": "Dashboard de Analítica",
+        "descripcion": "Panel de control con gráficos e indicadores clave de rendimiento (KPI).",
+        "fechainicio": "2025-05-15",
+        "activo": true
+    },
+    {
+        "id": "ccfc9433-d0ab-45fc-854e-80e6eac57c1b",
+        "nombre": "Sistema de Gestión de Recursos Humanos",
+        "descripcion": "Plataforma para administrar nómina, vacaciones y evaluaciones.",
+        "fechainicio": "2025-06-10",
+        "activo": false
+    },
+    {
+        "id": "de9f6c1a-8ab1-42aa-9890-11bca72f71dd",
+        "nombre": "Módulo de Facturación Electrónica",
+        "descripcion": "Sistema para emitir y validar facturas electrónicas conforme a la DIAN.",
+        "fechainicio": "2025-01-28",
+        "activo": true
+    },
+    {
+        "id": "ed1e3f9b-527c-48d2-9b1d-8e3c6a5c14b1",
+        "nombre": "API para Integración Externa",
+        "descripcion": "Servicio RESTful para que terceros consuman información de productos.",
+        "fechainicio": "2024-10-10",
+        "activo": true
+    }
+]
