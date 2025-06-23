@@ -1,9 +1,7 @@
 package com.msa.historiasUsu_Resp.repository.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import lombok.experimental.FieldDefaults;
 import java.util.UUID;
 import static jakarta.persistence.GenerationType.AUTO;
@@ -13,7 +11,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+@Data
 @Entity
 @Table(name = "HistoriaUsu")
 @Getter
@@ -23,14 +24,25 @@ import lombok.Setter;
 @AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class Historia {
+
     @Id
     @GeneratedValue(strategy = AUTO)
     UUID id;
 
     UUID proyectoId;
+
     UUID responsableId;
+
     String descripcion;
-    Enum estado;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Estado estado;
 
+    public enum Estado {
+        ACTIVO,
+        INACTIVO,
+        PENDIENTE,
+        COMPLETADO
+    }
 }

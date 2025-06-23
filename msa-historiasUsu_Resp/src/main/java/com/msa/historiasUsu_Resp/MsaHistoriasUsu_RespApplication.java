@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
+@SpringBootApplication
 @EntityScan("com.msa.historiasUsu_Resp.repository.model")
 @EnableJpaRepositories("com.msa.historiasUsu_Resp.repository.jpa")
-
 public class MsaHistoriasUsu_RespApplication {
     public static void main(String[] args) {
         SpringApplication.run(MsaHistoriasUsu_RespApplication.class, args);
